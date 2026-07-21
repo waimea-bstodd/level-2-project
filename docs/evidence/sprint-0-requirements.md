@@ -2,13 +2,13 @@
 
 ## Identified Problem or Need
 
-Replace this text with a clearly stated problem or need that exists that your project will attempt to solve / fulfil.
-
+My problem is that there is no good way to listen to my local downloaded music on multipule devices in my house. If I try to use my local music on something such as spotifiy it will on;ly be able to be played on one devcice unless I add duped songs on evrey device. I could use something like jellyfin but its more made for movies and tv shows and the music on jellyfin doesnt feel that good to use.
 
 ## End-User Requirements
 
-Replace this text with a description of your typical end-users and their specific needs / expectations / requirements.
-
+The app has to be able to play local downloaded music on any device that is the same wifi
+the app needs to be able to store comman music files such as .mp3 .wav .flac
+it needs to be useable on lots of diffreant devices
 
 ## Proposed Solution
 
