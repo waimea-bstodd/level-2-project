@@ -9,42 +9,46 @@ Implement the database, populated with test data. Create queries that retrieve t
 
 **Edit these goals as needed**
 
-- Implement the database
-- Add test data to the database
+- Implement the SQLite database schema (`tracks`, `playlists`, `playlist_tracks`)
+- Add test music to the database
 - Create the following web pages:
-    - Home pages showing...
-    - Details page for ...
-    - Etc.
+    - Home page showing recent tracks
+    - Library page showing all tracks and playlists
+    - Search page
 - Develop SQL database queries to:
-    - Retrieve all ...
-    - Retrieve specific ...
-    - Etc.
+    - Retrieve recent tracks
+    - Retrieve all library tracks sorted by artist name and song name
+    - Retrieve playlists and filtered search results
 
 
-## Testing FEATURE NAME HERE
+## Testing Database Connection and Home Page display
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+Tested if the app could successfully connect to the SQLite database and fetch the 10 most recently added tracks to display on the home screen
 
 **PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
 
-![Placeholder](screenshots/placeholder.png)
+![Placeholder](screenshots/sprint2test1.png)
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+Tracks were showing up in random order. Added `ORDER BY created DESC` to the SQL query so the newest music always appears at the top.
 
 **PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Placeholder](screenshots/sprint2test1Improvement.png)
 
 
-## Testing FEATURE NAME HERE
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+## Testing Library Page Display tracks and playlists
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+Tested that all songs and playists show up in libary page 
+
+**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE** 
+
+![Placeholder](screenshots/sprint2test2.png)
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+Sorted the tracks by artist name first, then song title, so the library looks organized
 
 **PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
 
@@ -67,5 +71,4 @@ Replace this text with notes any improvements you made as a result of the testin
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
-
+I think this sprint went alright. I manged to get the app in a half working state, the app lets you upload music, play music and also make playlists. I think that making it all work has hard and it took me a while to get it working but in the end it works but could be better.

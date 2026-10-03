@@ -1,0 +1,23 @@
+{% extends "_base.jinja" %}
+{% block content %}
+    <h2>Search Music</h2>
+    <form method="GET" action="/search" style="margin-bottom: 2rem;">
+        <input name="query" type="text" placeholder="Search title, artist, album..." value="{{ query }}" required>
+        <button>Search</button>
+    </form>
+
+    {% if query %}
+        <h3>Results for "{{ query }}"</h3>
+        <div id="notes">
+            {% for track in tracks %}
+                <article class="note">
+                    <header><h3>{{ track.title }}</h3></header>
+                    <p><strong>Artist:</strong> {{ track.artist }}</p>
+                    <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio>
+                </article>
+            {% else %}
+                <p>No tracks found.</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

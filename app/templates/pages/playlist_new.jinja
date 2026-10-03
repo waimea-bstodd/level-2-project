@@ -1,0 +1,24 @@
+{% extends "_base.jinja" %}
+{% block content %}
+    <h2>Create New Playlist</h2>
+    <form method="POST" action="/playlist">
+        <label>
+            Playlist Name*
+            <input name="name" type="text" required>
+        </label>
+        
+        <fieldset style="margin-top: 1rem;">
+            <legend>Select Tracks:</legend>
+            {% for track in tracks %}
+                <label style="display: block; margin: 0.5rem 0;">
+                    <input type="checkbox" name="tracks" value="{{ track.id }}">
+                    {{ track.title }} - {{ track.artist }}
+                </label>
+            {% else %}
+                <p>No tracks available to add. Upload some first!</p>
+            {% endfor %}
+        </fieldset>
+        
+        <button style="margin-top: 1rem;">Create Playlist</button>
+    </form>
+{% endblock %}

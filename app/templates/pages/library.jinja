@@ -1,0 +1,26 @@
+{% extends "_base.jinja" %}
+{% block content %}
+    <h2>My Library</h2>
+    
+    <h3>Playlists <a href="/playlist/new" style="font-size: 1rem; margin-left: 1rem;">[+ New]</a></h3>
+    <ul>
+        {% for playlist in playlists %}
+            <li><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></li>
+        {% else %}
+            <li>No playlists found.</li>
+        {% endfor %}
+    </ul>
+
+    <hr style="margin: 2rem 0;">
+
+    <h3>All Tracks</h3>
+    <div id="notes">
+        {% for track in tracks %}
+            <article class="note">
+                <header><h3>{{ track.title }}</h3></header>
+                <p><strong>Artist:</strong> {{ track.artist }}</p>
+                <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio>
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %}

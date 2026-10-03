@@ -1,0 +1,62 @@
+{% extends "_base.jinja" %}
+{% block content %}
+    <h2>Upload Tracks</h2>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <label>
+            1. Select Audio Files*
+            <input id="audio-files" name="audio" type="file" accept="audio/*" multiple required>
+        </label>
+        
+        <!-- This container will hold the dynamically generated list of songs -->
+        <div id="file-previews" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+        </div>
+        
+        <!-- Upload button hidden by default until files are chosen -->
+        <button id="upload-btn" style="margin-top: 1rem; display: none;">2. Upload All</button>
+    </form>
+
+    <script>
+        document.getElementById('audio-files').addEventListener('change', function(e) {
+            const container = document.getElementById('file-previews');
+            const btn = document.getElementById('upload-btn');
+            
+            // Clear out any old previews if the user selects new files
+            container.innerHTML = ''; 
+
+            if (this.files.length > 0) {
+                btn.style.display = 'block'; // Show the upload button
+            } else {
+                btn.style.display = 'none';
+            }
+
+            // Loop through all selected files to build the preview boxes
+            Array.from(this.files).forEach((file, index) => {
+                // Get filename without the extension (e.g. .mp3)
+                let fileName = file.name.replace(/\.[^/.]+$/, "");
+                // Clean up quotes so they don't break the HTML input value
+                fileName = fileName.replace(/"/g, '&quot;');
+
+                const html = `
+                    <div style="border: 1px solid var(--border-col); padding: 1rem; background: var(--back-col-panel);">
+                        <p style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #555;"><strong>File:</strong> ${file.name}</p>
+                        <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));">
+                            <label>
+                                Title
+                                <input type="text" name="title_${index}" value="${fileName}" required>
+                            </label>
+                            <label>
+                                Artist
+                                <input type="text" name="artist_${index}" placeholder="Unknown Artist">
+                            </label>
+                            <label>
+                                Album
+                                <input type="text" name="album_${index}" placeholder="Unknown Album">
+                            </label>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        });
+    </script>
+{% endblock %}

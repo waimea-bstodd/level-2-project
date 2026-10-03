@@ -1,0 +1,16 @@
+{% extends "_base.jinja" %}
+{% block content %}
+    <h2>Recently Added</h2>
+    <div id="notes">
+        {% for track in tracks %}
+            <article class="note">
+                <header><h3>{{ track.title }}</h3></header>
+                <p><strong>Artist:</strong> {{ track.artist }}</p>
+                <p><strong>Album:</strong> {{ track.album or 'Unknown' }}</p>
+                <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio>
+            </article>
+        {% else %}
+            <p>No music added <a href="/upload">Upload a track</a>.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

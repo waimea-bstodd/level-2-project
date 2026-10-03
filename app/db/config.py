@@ -1,65 +1,43 @@
-#============================================================================
-# Database schema and seed data configuration
-#============================================================================
-
-
-#----------------------------------------------------------------------------
-# Table definitions
-#----------------------------------------------------------------------------
-# Define your tables with a name, a schema and optional seed/sample data,
-# using this format, and then add the tables to the Table Registry below:
-#
-# class TableName:
-#     NAME      = "name"
-#     SCHEMA    = "CREATE TABLE name (...)"
-#     SEED_DATA = "INSERT INTO name (...)" or None
-#----------------------------------------------------------------------------
-
-class NoteTable:
-
-    NAME = "note"
-
+class TrackTable:
+    NAME = "tracks"
     SCHEMA = """
-        CREATE TABLE note (
+        CREATE TABLE tracks (
+            id       INTEGER PRIMARY KEY AUTOINCREMENT,
+            title    TEXT NOT NULL,
+            artist   TEXT NOT NULL,
+            album    TEXT,
+            filename TEXT NOT NULL,
+            created  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """
+    SEED_DATA = None
+
+class PlaylistTable:
+    NAME = "playlists"
+    SCHEMA = """
+        CREATE TABLE playlists (
             id      INTEGER PRIMARY KEY AUTOINCREMENT,
-            title   TEXT NOT NULL,
-            body    TEXT,
-            pinned  INTEGER DEFAULT 0,
+            name    TEXT NOT NULL,
             created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """
+    SEED_DATA = None
 
-    SEED_DATA = """
-        INSERT INTO note (title, pinned, body)
-        VALUES
-            ("Welcome!",      1, "This is a demo application using Flask, Jinja and SQLite."),
-            ("Shopping List", 0, "Milk\nBread\nEggs\nCheese"),
-            ("Meeting Notes", 0, "Discussed project timeline.\n\nAction items:\n- Review design\n- Update docs"),
-            ("Recipe: Pasta", 0, "Ingredients:\n- 500g pasta\n- Tomato sauce\n- Garlic\n\nCook pasta, add sauce, enjoy!"),
-            ("Important!",    1, "Remember to backup your database regularly.")
+class PlaylistTrackTable:
+    NAME = "playlist_tracks"
+    SCHEMA = """
+        CREATE TABLE playlist_tracks (
+            playlist_id INTEGER NOT NULL,
+            track_id    INTEGER NOT NULL,
+            FOREIGN KEY(playlist_id) REFERENCES playlists(id),
+            FOREIGN KEY(track_id) REFERENCES tracks(id),
+            PRIMARY KEY(playlist_id, track_id)
+        )
     """
-
-# Add more table classes here...
-
-
-
-#----------------------------------------------------------------------------
-# Table registry
-#----------------------------------------------------------------------------
-# Register all of your tables by adding them to the TABLES list here:
-#
-# TABLES = [
-#     Table1Name,
-#     Table2Name,
-#     etc.
-# ]
-#
-# Note: The table order is important - Create the tables that have
-# foreign keys *after* the tables they link to have been created
-#----------------------------------------------------------------------------
+    SEED_DATA = None
 
 TABLES = [
-    NoteTable,
-    # Add more tables here...
+    TrackTable,
+    PlaylistTable,
+    PlaylistTrackTable
 ]
-

@@ -1,0 +1,15 @@
+{% extends "_base.jinja" %}
+{% block content %}
+    <h2>Playlist: {{ playlist.name }}</h2>
+    <div id="notes">
+        {% for track in tracks %}
+            <article class="note">
+                <header><h3>{{ track.title }}</h3></header>
+                <p><strong>Artist:</strong> {{ track.artist }}</p>
+                <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio>
+            </article>
+        {% else %}
+            <p>No tracks in this playlist.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,17 +1,17 @@
 /*===========================================================
-  PROJECT NAME HERE
-  By YOUR NAME HERE
+  Music Player
+  By Ben Todd
 ===========================================================*/
 
 :root {
     --text-col:         #111;
 
-    --back-col:         #eee;
-    --back-col-panel:   #fff;
+    --back-col:         rgb(25, 219, 0), 255, 255, 0.15;
+    --back-col-panel:   #255, 255, 255, 0.15;
 
     --border-col:       #355;
 
-    --accent-col:       #e43;
+    --accent-col:       rgb(8, 8, 8);
 }
 
 
@@ -27,6 +27,7 @@ html {
 
 body {
     min-height: 100dvh;
+    background-color: var(--back-col);
 }
 
 
@@ -45,6 +46,11 @@ body > header {
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    min-height: 2rem;
+    background: rgba(103, 101, 101, 0.15); 
+    backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 
     nav {
         display: flex;
@@ -63,6 +69,7 @@ main > h2 {
     font-size: 2rem;
     text-align: center;
     margin-block: 2rem;
+    
 }
 
 
@@ -78,7 +85,11 @@ main > h2 {
         padding: 1rem;
         box-shadow: 0 0.5rem 1rem #0004;
         border: 1px solid var(--border-col);
-        background-color: var(--back-col-panel);
+        background-color: var();
+        background: rgba(); 
+        backdrop-filter: blur(12px) saturate(180%);
+        border-bottom: 1px solid rgba(--back-col-panel);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 
         header {
             display: flex;
