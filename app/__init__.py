@@ -19,7 +19,7 @@ from app.helpers import *
 app = Flask(__name__)
 
 
-# Set up the folder where uploaded music will be saved
+# Set up the folder where uploaded music files will be stored
 UPLOAD_FOLDER = os.path.join('app', 'static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -33,6 +33,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 #-----------------------------------------------------------
 @app.get("/")
 def home():
+    # Fetch the 10 most recently added tracks from the database
     with connect_db() as db:
         sql = "SELECT * FROM tracks ORDER BY created DESC LIMIT 10"
         tracks = db.execute(sql).fetchall()
@@ -48,6 +49,7 @@ def search():
     query = request.args.get('query', '').strip()
     tracks = []
     
+    # If a search term was entered, query the database using LIKE filters
     if query:
         search_term = f"%{query}%"
         with connect_db() as db:
@@ -63,6 +65,7 @@ def search():
 #-----------------------------------------------------------
 @app.get("/library")
 def library():
+    # Retrieve all tracks sorted by artist/title and all playlists sorted by name
     with connect_db() as db:
         tracks = db.execute("SELECT * FROM tracks ORDER BY artist, title").fetchall()
         playlists = db.execute("SELECT * FROM playlists ORDER BY name").fetchall()
@@ -82,6 +85,7 @@ def upload_form():
 def upload_track():
     audio_files = request.files.getlist('audio')
     
+    # Validate that files were actually selected
     if not audio_files or audio_files[0].filename == '':
         flash("Please select at least one audio file.", "error")
         return redirect("/upload")
@@ -89,25 +93,35 @@ def upload_track():
     success_count = 0
 
     with connect_db() as db:
-        for audio_file in audio_files:
+        # Loop through each uploaded file and its custom form inputs using enumerate
+        for index, audio_file in enumerate(audio_files):
             if audio_file.filename:
-                original_filename = audio_file.filename
-                title, _ = os.path.splitext(original_filename)
-                title = html.escape(title)
+                form_title = request.form.get(f'title_{index}', '').strip()
+                form_artist = request.form.get(f'artist_{index}', '').strip()
+                form_album = request.form.get(f'album_{index}', '').strip()
                 
-                filename = secure_filename(original_filename)
+                # Fallback to filename if title is blank
+                if not form_title:
+                    form_title, _ = os.path.splitext(audio_file.filename)
+                
+                # Sanitize inputs and apply default values if needed
+                title = html.escape(form_title)
+                artist = html.escape(form_artist) if form_artist else "Unknown Artist"
+                album = html.escape(form_album) if form_album else "Unknown Album"
+                
+                # Secure the filename and save the audio file to disk
+                filename = secure_filename(audio_file.filename)
                 unique_filename = f"{uuid.uuid4().hex[:8]}_{filename}"
                 filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
                 audio_file.save(filepath)
 
+                # Insert track metadata into the database
                 sql = "INSERT INTO tracks (title, artist, album, filename) VALUES (?, ?, ?, ?)"
-                params = (title, "Unknown Artist", "Unknown Album", unique_filename)
+                params = (title, artist, album, unique_filename)
                 db.execute(sql, params)
                 
                 success_count += 1
                 
-        flash(f"Successfully uploaded {success_count} track(s)!", "success")
-        
     return redirect("/library")
 
 
@@ -127,20 +141,21 @@ def create_playlist():
     name = html.escape(request.form.get('name', '').strip())
     track_ids = request.form.getlist('tracks')
     
+    # Ensure playlist name is provided
     if not name:
         flash("Playlist name is required.", "error")
         return redirect("/playlist/new")
 
     with connect_db() as db:
+        # Insert new playlist and get its ID
         sql = "INSERT INTO playlists (name) VALUES (?)"
         result = db.execute(sql, (name,))
         playlist_id = result.lastrowid
         
+        # Link selected tracks to the playlist via junction table
         for tid in track_ids:
             db.execute("INSERT INTO playlist_tracks (playlist_id, track_id) VALUES (?, ?)", (playlist_id, tid))
             
-        flash(f"Playlist '{name}' created!", "success")
-        
     return redirect("/library")
 
 
@@ -156,6 +171,36 @@ def view_playlist(id):
         tracks = db.execute(sql, (id,)).fetchall()
         
     return render_template("pages/playlist.jinja", playlist=playlist, tracks=tracks)
+
+
+#-----------------------------------------------------------
+# Delete - Remove tracks and playlists
+#-----------------------------------------------------------
+@app.post("/track/<int:id>/delete")
+def delete_track(id):
+    with connect_db() as db:
+        # Remove the physical audio file from disk
+        track = db.execute("SELECT filename FROM tracks WHERE id=?", (id,)).fetchone()
+        if track:
+            filepath = os.path.join(UPLOAD_FOLDER, track['filename'])
+            if os.path.exists(filepath):
+                os.remove(filepath)
+            
+            # Remove track references from playlists and delete the track record
+            db.execute("DELETE FROM playlist_tracks WHERE track_id=?", (id,))
+            db.execute("DELETE FROM tracks WHERE id=?", (id,))
+            
+    return redirect("/library")
+
+
+@app.post("/playlist/<int:id>/delete")
+def delete_playlist(id):
+    with connect_db() as db:
+        # Remove playlist track connections and delete the playlist record
+        db.execute("DELETE FROM playlist_tracks WHERE playlist_id=?", (id,))
+        db.execute("DELETE FROM playlists WHERE id=?", (id,))
+        
+    return redirect("/library")
 
 
 #===========================================================

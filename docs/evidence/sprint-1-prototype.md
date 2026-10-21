@@ -1,5 +1,15 @@
 # Sprint 1 - Developing a DB and UI Prototype
 
+V1 
+
+First UI concept
+
+https://design.penpot.app/#/view?file-id=6f06cb60-262a-804c-8008-6c67ea606676&page-id=6f06cb60-262a-804c-8008-6c67ea606677&section=interactions&index=0&share-id=1f0b307d-0f2e-41c2-877d-2d7881282a73
+
+V2
+
+V2 is a more simplified concept of V1 after working on the app. Stuff like the bottom buttons were changged and the home page was also changed a lot with also other smaller things were changed 
+ https://design.penpot.app/#/view?file-id=52a5041f-08a1-80f1-8008-c3285ac1d6ba&page-id=6f06cb60-262a-804c-8008-6c67ea606677&section=interactions&index=0&share-id=195aa835-355f-45d3-91c0-9fb8081a49c0
 
 ## Sprint Goals
 
@@ -54,6 +64,8 @@ The first stage of prototyping was to explore how the UI might 'flow' between st
 This Figma demo shows the initial design for the UI 'flow':
 
 **FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+
+https://design.penpot.app/#/view?file-id=6f06cb60-262a-804c-8008-6c67ea606676&page-id=6f06cb60-262a-804c-8008-6c67ea606677&section=interactions&index=0&share-id=1f0b307d-0f2e-41c2-877d-2d7881282a73
 
 ### Testing
 

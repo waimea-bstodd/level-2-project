@@ -4,9 +4,9 @@
 ===========================================================*/
 
 :root {
-    --text-col:         #111;
+    --text-col:         #46508a;
 
-    --back-col:         rgb(25, 219, 0), 255, 255, 0.15;
+    --back-col:         rgb(28, 30, 27), 255, 255, 0.15;
     --back-col-panel:   #255, 255, 255, 0.15;
 
     --border-col:       #355;
@@ -20,6 +20,7 @@
 html {
     background-color: var(--back-col);
     color: var(--text-col);
+
 
     font-family: system-ui, sans-serif;
 }
@@ -47,19 +48,29 @@ body > header {
     justify-content: space-between;
     padding: 1rem;
     min-height: 2rem;
-    background: rgba(103, 101, 101, 0.15); 
+    background: rgba(144, 179, 246, 0.15); 
     backdrop-filter: blur(12px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    
+    a {
+        text-decoration: none;
+        color: var(--text-col);
+    }
 
     nav {
         display: flex;
         gap: 1rem;
+        
 
         a {
-            color: var(--accent-col);
+            color: var(--text-col);
+            text-decoration: none;
         }
+   
     }
+
+
 }
 
 
@@ -69,6 +80,8 @@ main > h2 {
     font-size: 2rem;
     text-align: center;
     margin-block: 2rem;
+
+    
     
 }
 
@@ -84,12 +97,13 @@ main > h2 {
     .note {
         padding: 1rem;
         box-shadow: 0 0.5rem 1rem #0004;
-        border: 1px solid var(--border-col);
-        background-color: var();
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.15);
         background: rgba(); 
         backdrop-filter: blur(12px) saturate(180%);
         border-bottom: 1px solid rgba(--back-col-panel);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 
         header {
             display: flex;
