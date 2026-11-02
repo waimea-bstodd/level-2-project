@@ -2,7 +2,7 @@
 
 ## Identified Problem or Need
 
-My problem is that there is no good way to listen to my local downloaded music on multipule devices in my house. If I try to use my local music on something such as spotifiy it will on;ly be able to be played on one devcice unless I add duped songs on evrey device. I could use something like jellyfin but its more made for movies and tv shows and the music on jellyfin doesnt feel that good to use.
+My problem is that there is no good way to listen to my local downloaded music on multipule devices in my house. If I try to use my local music on something such as spotifiy it will only be able to be played on one devcice unless I add duped songs on evrey device. I could use something like jellyfin but its more made for movies and tv shows and the music on jellyfin doesnt feel that good to use.
 
 ## End-User Requirements
 

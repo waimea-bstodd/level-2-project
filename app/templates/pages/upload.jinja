@@ -3,16 +3,16 @@
     <h2>Upload Tracks</h2>
     <form method="POST" action="/upload" enctype="multipart/form-data">
         <label>
-            1. Select Audio Files*
+            Select Audio Files | Note: Dont pirate music and support the artist by buying their music 
             <input id="audio-files" name="audio" type="file" accept="audio/*" multiple required>
         </label>
         
-        <!-- This container will hold the dynamically generated list of songs -->
+       
         <div id="file-previews" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
         </div>
         
-        <!-- Upload button hidden by default until files are chosen -->
-        <button id="upload-btn" style="margin-top: 1rem; display: none;">2. Upload All</button>
+        
+        <button id="upload-btn" style="margin-top: 1rem; display: none;"> Upload Music</button>
     </form>
 
     <script>
@@ -29,11 +29,10 @@
                 btn.style.display = 'none';
             }
 
-            // Loop through all selected files to build the preview boxes
+            // Loop through all selected files to make the preview boxes
             Array.from(this.files).forEach((file, index) => {
                 // Get filename without the extension (e.g. .mp3)
                 let fileName = file.name.replace(/\.[^/.]+$/, "");
-                // Clean up quotes so they don't break the HTML input value
                 fileName = fileName.replace(/"/g, '&quot;');
 
                 const html = `
