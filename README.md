@@ -1,16 +1,47 @@
-# Level 2 Project
+# Music Player
 
-This is a simple [Flask web app](https://flask.palletsprojects.com/) project, built using [Python](https://www.python.org/), that using a [SQLite database](https://sqlite.org/), and [Jinja2 templates](https://jinja.palletsprojects.com/templates/).
+By Ben Todd
 
-See the [docs folder](docs) for a quick-start and guides to usage. In particular:
+## Project Description
 
-- [Setup](docs/guides/setup.md)
-- [Routes](docs/guides/routes.md) in Flask
-- [Jinja](docs/guides/jinja.md) templates
-- [DB Schema](docs/guides/schema.md)
-- [SQL Queries](docs/guides/sqlite.md)
+This is an app that plays localy downloaded music across multiple devices without needing multiple duplicate files accross seprate devices.
+
+This project contains demo music that was downloaded from https://pixabay.com/ and all files used are copyright free
+
+The app has the following key features:
+- Plays Tracks accross multipule devices with one file
+- Playlists. Users can create / Delate playlists
+- Searching,. Users can search for certin artists, albums, tracks
+- ...
+
+
+## Live Site
+
+The site is hosted at Render at [this link](https://level-2-project-dnzb.onrender.com/)
+
+
+## Supporting Documents
 
 *For easier reading, the docs are hosted as a [GH Pages site](https://waimea-bstodd.github.io/level-2-project/)*
+
+Task Instructions:
+- [Instruction documents](docs/instructions/)
+
+Project Evidence
+- [Sprint 0: Project Requirements](docs/evidence/sprint-0-requirements.md)
+- [Sprint 1: Prototype Development](docs/evidence/sprint-1-prototype.md)
+- [Sprint 2: Database](docs/evidence/sprint-2-database.md)
+- [Sprint 3: MVP Development](docs/evidence/sprint-3-mvp.md)
+- [Sprint 4: Final System Development](docs/evidence/sprint-4-final.md)
+- [Review: Project Final Review](docs/evidence/system-review.md)
+
+
+## Technologies Used
+
+- [Flask](https://flask.palletsprojects.com/) as the web framework
+- [Python](https://www.python.org/) as the programming language used
+- [SQLite](https://sqlite.org/) for the database
+- [Jinja2](https://jinja.palletsprojects.com/templates/) for page templating
 
 
 ## Project Structure
