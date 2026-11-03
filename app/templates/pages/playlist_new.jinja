@@ -4,18 +4,18 @@
     <form method="POST" action="/playlist">
         <label>
             Playlist Name*
-            <input name="name" type="text" required>
+            <input name="name" type="text" required> {# force users to name the playlist they are making #}
         </label>
         
         <fieldset style="margin-top: 1rem;">
             <legend>Select Tracks:</legend>
-            {% for track in tracks %}
+            {% for track in tracks %} {# Lists tracks that are in the app and users can Select them to add the tracks to their playlists #}
                 <label style="display: block; margin: 0.5rem 0;">
                     <input type="checkbox" name="tracks" value="{{ track.id }}">
                     {{ track.title }} - {{ track.artist }}
                 </label>
             {% else %}
-                <p>No tracks available to add. Upload some first!</p>
+                <p>No tracks available to add</p> {# If the app can't find any tracks when trying to make a playlist the app will tell users that there are to tracks to add #}
             {% endfor %}
         </fieldset>
         

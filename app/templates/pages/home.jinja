@@ -1,7 +1,7 @@
 {% extends "_base.jinja" %}
 {% block content %}
     
-    <h2>Recently Added</h2>
+    <h2>Recently Added</h2>  {#Shows the most Recently added tracks#}
     <div id="notes">
         {% for track in tracks %}
             <article class="note">
@@ -11,7 +11,7 @@
                 <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio>
             </article>
         {% else %}
-            <p>No music added <a href="/upload">Upload a track</a>.</p>
+            <p>No music added <a href="/upload">Upload a track</a>.</p> {# If the app cant find any tracks it will ask users to go to the upload page to upload tracks #}
         {% endfor %}
     </div>
 {% endblock %}

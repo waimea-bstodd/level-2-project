@@ -20,18 +20,18 @@
             const container = document.getElementById('file-previews');
             const btn = document.getElementById('upload-btn');
             
-            // Clear out any old previews if the user selects new files
+            {# Clear out any old previews if the user selects new files #}
             container.innerHTML = ''; 
 
             if (this.files.length > 0) {
-                btn.style.display = 'block'; // Show the upload button
+                btn.style.display = 'block'; {# Show the upload button #}
             } else {
                 btn.style.display = 'none';
             }
 
-            // Loop through all selected files to make the preview boxes
+            {# Loop through all selected files to make the preview boxes #}
             Array.from(this.files).forEach((file, index) => {
-                // Get filename without the extension (e.g. .mp3)
+                {# Get filename without the extension (e.g. .mp3) #}
                 let fileName = file.name.replace(/\.[^/.]+$/, "");
                 fileName = fileName.replace(/"/g, '&quot;');
 

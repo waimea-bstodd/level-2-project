@@ -4,15 +4,15 @@
     
     <h3>Playlists <a href="/playlist/new" style="font-size: 1rem; margin-left: 1rem;">[New]</a></h3>
     <ul>
-        {% for playlist in playlists %}
+        {% for playlist in playlists %} {# Shows all plalists that users have made #}
             <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
                 <a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a>
-                <form action="/playlist/{{ playlist.id }}/delete" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this playlist?');">
+                <form action="/playlist/{{ playlist.id }}/delete" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this playlist?');"> // popup that asks users if they are sure that they want to delate the playlist
                     <button type="submit" style="color: red; background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0;">[Delete]</button>
                 </form>
             </li>
         {% else %}
-            <li>No playlists found.</li>
+            <li>No playlists found.</li> {# If app cant find any playlists it will tell the user that there were no playlists found #}
         {% endfor %}
     </ul>
 
@@ -26,12 +26,12 @@
             <article class="note">
                 <header style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <h3 style="margin: 0;">{{ track.title }}</h3>
-                    <form action="/track/{{ track.id }}/delete" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this track? This will remove the file permanently.');">
-                        <button type="submit" style="color: white; background-color: #d9534f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Delete</button>
+                    <form action="/track/{{ track.id }}/delete" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this track? This will remove the file permanently.');"> // Same as the delate playlist button how there is a popup that asks users if they are sure they want to delate the track
+                        <button type="submit" style="color: white; background-color: #d9534f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Delete</button> 
                     </form>
                 </header>
                 <p><strong>Artist:</strong> {{ track.artist }}</p>
-                <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio>
+                <audio controls src="/static/uploads/{{ track.filename }}" style="width: 100%; margin-top: 1rem;"></audio> // This is what lets users play the track
             </article>
         {% endfor %}
     </div>
