@@ -4,15 +4,18 @@ By Ben Todd
 
 ## Project Description
 
-This is an app that plays localy downloaded music across multiple devices without needing multiple duplicate files accross seprate devices.
+This is a app that lets users stream their downloaded music across multiple devices on the same wifi without needing duplicate files on every device. It acts as a local media server where users can upload music files, manage user made playlists, and stream audio directly through a web browser interface accross multiple devices
 
 This project contains demo music that was downloaded from https://pixabay.com/ and all files used are copyright free
 
 The app has the following key features:
-- Plays Tracks accross multipule devices with one file
-- Playlists. Users can create / Delate playlists
-- Searching,. Users can search for certin artists, albums, tracks
-- ...
+- Play local music across multiple devices connected to the same Wifi
+- Multi file audio uploads with metadata editing for titles, artists, and albums
+- Searching. Users can search for specific tracks, artists, or albums
+- Playlists. Users can create, view, and delete playlists
+- Track management. Users can delete individual tracks
+- Clean and simple layout with a consistent navigation across all pages
+
 
 
 ## Live Site
